@@ -1,0 +1,2 @@
+# ToPu_SmartLocalView
+ローカル表示を階層表示できるようになります。Machin3Toolsの軽量版のイメージです。Hierarchical Local View navigation with selection memory
