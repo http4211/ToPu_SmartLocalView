@@ -8,3 +8,7 @@ Machin3Toolsのローカル表示を使っていたのですが、オブジェ�
 有効化する際には重複しているキーバインドを無効化してください。
 
 Hierarchical Local View navigation with selection memory
+
+
+## 入手方法
+最新版は[ダウンロード](https://github.com/http4211/ToPu_SmartLocalView/releases) または Dev ブランチから ZIP ファイルをダウンロードしてください。
