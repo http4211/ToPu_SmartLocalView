@@ -66,28 +66,28 @@ def get_objects_in_local_view(context):
 
 
 
-def draw_callback_px(self, context):
+def draw_callback_px():
     global display_text, show_overlay
     if not show_overlay:
         return
 
-    region = context.region
+    area = next((area for area in bpy.context.window.screen.areas if area.type == 'VIEW_3D'), None)
+    if not area:
+        return
+
+    region = next((region for region in area.regions if region.type == 'WINDOW'), None)
     if not region:
         return
 
     font_id = 0
-    font_size = 14  # 小さめのサイズ
+    font_size = 14
     blf.size(font_id, font_size)
 
-    # テキストの描画位置
     text_width, text_height = blf.dimensions(font_id, display_text)
     x = int(region.width / 2 - text_width / 2)
     y = int(region.height - 60)
 
-    # テキスト色を白に設定（RGBA）
     blf.color(font_id, 1.0, 1.0, 1.0, 1.0)
-
-    # テキスト描画
     blf.position(font_id, x, y, 0)
     blf.draw(font_id, display_text)
 
@@ -268,7 +268,7 @@ def register_keymap():
         return
 
     km = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
-    kmi = km.keymap_items.new(SmartLocalViewOperator.bl_idname, type='NUMPAD_SLASH', value='PRESS')
+    kmi = km.keymap_items.new("view3d.smart_local_view", type='NUMPAD_SLASH', value='PRESS')
     addon_keymaps.append((km, kmi))
 
 
@@ -290,7 +290,8 @@ def register():
     if load_stack_post not in bpy.app.handlers.load_post:
         bpy.app.handlers.load_post.append(load_stack_post)
 
-    _draw_handler = bpy.types.SpaceView3D.draw_handler_add(draw_callback_px, (None, bpy.context), 'WINDOW', 'POST_PIXEL')
+    _draw_handler = bpy.types.SpaceView3D.draw_handler_add(draw_callback_px, (), 'WINDOW', 'POST_PIXEL')
+
 
 
 def unregister():
