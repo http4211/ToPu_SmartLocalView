@@ -5,6 +5,6 @@ Machin3Toolsのローカル表示を使っていたのですが、オブジェ�
 
 ※Machin3Toolsにはあった、シンメトリの表示非表示には対応していません。
 
-インストールする際には重複しているキーバインドを無効化してください。
+有効化する際には重複しているキーバインドを無効化してください。
 
 Hierarchical Local View navigation with selection memory
